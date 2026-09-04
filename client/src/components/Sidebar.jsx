@@ -12,46 +12,48 @@ const Sidebar = () => {
 
   return (
     <aside className="sidebar">
-      <div className="sidebar-brand">
-        <h2>School ERP</h2>
-      </div>
+      <div className="sidebar-top">
+        <div className="sidebar-brand">
+          <h2>School ERP</h2>
+        </div>
 
-      <div className="sidebar-user">
-        <p className="user-name">{user?.name}</p>
-        <span>{user?.role}</span>
-      </div>
+        <div className="sidebar-user">
+          <p className="user-name">{user?.name}</p>
+          <span>{user?.role}</span>
+        </div>
 
-      <nav className="sidebar-nav">
-        <NavLink to="/">
-          Dashboard
-        </NavLink>
-
-        {user?.role === "ADMIN" && (
-          <>
-            <NavLink to="/teachers">
-              Teachers
-            </NavLink>
-
-            <NavLink to="/students">
-              Students
-            </NavLink>
-
-            <NavLink to="/classes">
-              Classes
-            </NavLink>
-          </>
-        )}
-
-        {user?.role === "TEACHER" && (
-          <NavLink to="/attendance">
-            Mark Attendance
+        <nav className="sidebar-nav">
+          <NavLink to="/">
+            Dashboard
           </NavLink>
-        )}
 
-        <NavLink to="/attendance-history">
-          Attendance History
-        </NavLink>
-      </nav>
+          {user?.role === "ADMIN" && (
+            <>
+              <NavLink to="/teachers">
+                Teachers
+              </NavLink>
+
+              <NavLink to="/students">
+                Students
+              </NavLink>
+
+              <NavLink to="/classes">
+                Classes
+              </NavLink>
+            </>
+          )}
+
+          {user?.role === "TEACHER" && (
+            <NavLink to="/attendance">
+              Mark Attendance
+            </NavLink>
+          )}
+
+          <NavLink to="/attendance-history">
+            Attendance History
+          </NavLink>
+        </nav>
+      </div>
 
       <button
         className="logout-button"

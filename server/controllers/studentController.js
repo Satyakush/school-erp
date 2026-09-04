@@ -55,16 +55,28 @@ const getStudents = async (req, res) => {
 
     const filter = {};
 
-    if (classId) {
-      filter.class = classId;
-    }
+    if (req.user.role === "TEACHER") {
+      if (!req.user.assignedClass) {
+        return res.status(400).json({
+          message: "No class assigned to this teacher"
+        });
+      }
 
-    if (section) {
-      const matchingClasses = await Class.find({ section }).select("_id");
+      filter.class = req.user.assignedClass;
+    } else {
+      if (classId) {
+        filter.class = classId;
+      }
 
-      filter.class = {
-        $in: matchingClasses.map((schoolClass) => schoolClass._id)
-      };
+      if (section) {
+        const matchingClasses = await Class.find({ section }).select("_id");
+
+        filter.class = {
+          $in: matchingClasses.map(
+            (schoolClass) => schoolClass._id
+          )
+        };
+      }
     }
 
     const students = await Student.find(filter)

@@ -97,12 +97,21 @@ button {
 
 .sidebar {
   width: 250px;
-  min-height: 100vh;
+  height: 100vh;
+  position: sticky;
+  top: 0;
   background: #111827;
   color: white;
   padding: 24px 16px;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
+}
+
+.sidebar-top {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
 }
 
 .sidebar-brand {
@@ -144,7 +153,8 @@ button {
 }
 
 .logout-button {
-  margin-top: auto;
+  flex-shrink: 0;
+  margin-top: 20px;
   padding: 11px;
   border: none;
   border-radius: 6px;
@@ -296,4 +306,234 @@ th {
   padding: 12px;
   border-radius: 6px;
   margin-bottom: 20px;
+}
+
+.attendance-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+.attendance-class-info {
+  margin-bottom: 24px;
+}
+
+.attendance-class-info h2 {
+  margin-bottom: 6px;
+}
+
+.attendance-class-info p {
+  color: #6b7280;
+}
+
+.attendance-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.attendance-present,
+.attendance-absent {
+  min-width: 105px;
+  padding: 9px 16px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  background: white;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.attendance-present:hover {
+  background: #f0fdf4;
+}
+
+.attendance-absent:hover {
+  background: #fef2f2;
+}
+
+.attendance-present.active {
+  background: #16a34a;
+  color: white;
+  border-color: #16a34a;
+  font-weight: 600;
+}
+
+.attendance-absent.active {
+  background: #dc2626;
+  color: white;
+  border-color: #dc2626;
+  font-weight: 600;
+}
+
+.attendance-present:disabled,
+.attendance-absent:disabled {
+  cursor: not-allowed;
+  opacity: 0.8;
+}
+
+.attendance-status {
+  min-width: 125px;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.present-status {
+  color: #16a34a;
+}
+
+.absent-status {
+  color: #dc2626;
+}
+
+.attendance-submit {
+  margin-top: 24px;
+}
+
+.attendance-history-filters {
+  display: flex;
+  align-items: end;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding-bottom: 24px;
+  margin-bottom: 24px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.filter-group label {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.filter-group select,
+.filter-group input {
+  min-width: 220px;
+  padding: 10px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  background: white;
+}
+
+.clear-filter-button {
+  height: 42px;
+}
+
+.attendance-history-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.attendance-history-card {
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.attendance-history-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 18px;
+  background: #f9fafb;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.attendance-history-card-header h3 {
+  margin-bottom: 5px;
+}
+
+.attendance-history-card-header p {
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.attendance-date {
+  font-weight: 600;
+  color: #374151;
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.present-badge {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.absent-badge {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+@media (max-width: 900px) {
+  .management-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 700px) {
+  .app-layout {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    height: auto;
+    min-height: auto;
+    position: static;
+    overflow: visible;
+  }
+
+  .sidebar-top {
+    overflow: visible;
+  }
+
+  .main-content {
+    padding: 20px;
+  }
+
+  .attendance-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .attendance-actions {
+    gap: 10px;
+  }
+
+  .attendance-status {
+    width: 100%;
+  }
+
+  .attendance-history-card-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .filter-group select,
+  .filter-group input {
+    min-width: 100%;
+  }
+
+  .filter-group {
+    width: 100%;
+  }
 }

@@ -14,7 +14,7 @@ const router = express.Router();
 
 router
   .route("/")
-  .get(protect, authorize("ADMIN"), getStudents)
+  .get(protect, authorize("ADMIN", "TEACHER"), getStudents)
   .post(protect, authorize("ADMIN"), createStudent);
 
 router
